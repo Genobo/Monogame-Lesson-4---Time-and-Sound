@@ -8,6 +8,9 @@ namespace Monogame_Lesson_4___Time_and_Sound
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Texture2D bombTexture;
+        Rectangle bombRect;
+        SpriteFont timeFont;
 
         public Game1()
         {
@@ -21,12 +24,14 @@ namespace Monogame_Lesson_4___Time_and_Sound
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            bombRect = new Rectangle(50, 50, 700, 400);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            bombTexture = Content.Load<Texture2D>("bomb");
+            timeFont = Content.Load<SpriteFont>("Time");
             // TODO: use this.Content to load your game content here
         }
 
@@ -47,6 +52,10 @@ namespace Monogame_Lesson_4___Time_and_Sound
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(bombTexture, bombRect, Color.White);
+            _spriteBatch.DrawString(timeFont, "1:00", new Vector2(270, 200), Color.Black);
+            _spriteBatch.End();
         }
     }
 }
