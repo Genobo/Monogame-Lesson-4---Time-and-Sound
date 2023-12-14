@@ -11,6 +11,9 @@ namespace Monogame_Lesson_4___Time_and_Sound
         Texture2D bombTexture;
         Rectangle bombRect;
         SpriteFont timeFont;
+        float seconds;
+        float startTime;
+        MouseState mouseState;
 
         public Game1()
         {
@@ -43,6 +46,16 @@ namespace Monogame_Lesson_4___Time_and_Sound
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+            mouseState = Mouse.GetState();
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                startTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            seconds = (float)gameTime.TotalGameTime.TotalSeconds - startTime;
+            if (seconds > 10)
+            {
+                startTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -54,7 +67,7 @@ namespace Monogame_Lesson_4___Time_and_Sound
             base.Draw(gameTime);
             _spriteBatch.Begin();
             _spriteBatch.Draw(bombTexture, bombRect, Color.White);
-            _spriteBatch.DrawString(timeFont, "1:00", new Vector2(270, 200), Color.Black);
+            _spriteBatch.DrawString(timeFont, seconds.ToString("00.0"), new Vector2(270, 200), Color.Black);
             _spriteBatch.End();
         }
     }
