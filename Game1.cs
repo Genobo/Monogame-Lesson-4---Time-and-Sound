@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,6 +15,7 @@ namespace Monogame_Lesson_4___Time_and_Sound
         float seconds;
         float startTime;
         MouseState mouseState;
+        SoundEffect explode;
 
         public Game1()
         {
@@ -35,6 +37,7 @@ namespace Monogame_Lesson_4___Time_and_Sound
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             bombTexture = Content.Load<Texture2D>("bomb");
             timeFont = Content.Load<SpriteFont>("Time");
+            explode = Content.Load<SoundEffect>("explosion");
             // TODO: use this.Content to load your game content here
         }
 
@@ -52,8 +55,9 @@ namespace Monogame_Lesson_4___Time_and_Sound
                 startTime = (float)gameTime.TotalGameTime.TotalSeconds;
             }
             seconds = (float)gameTime.TotalGameTime.TotalSeconds - startTime;
-            if (seconds > 10)
+            if (seconds >= 15)
             {
+                explode.Play();
                 startTime = (float)gameTime.TotalGameTime.TotalSeconds;
             }
         }

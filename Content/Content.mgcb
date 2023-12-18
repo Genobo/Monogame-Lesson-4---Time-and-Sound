@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:bomb.png
 
+#begin explosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:explosion.wav
+
 #begin Time.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
